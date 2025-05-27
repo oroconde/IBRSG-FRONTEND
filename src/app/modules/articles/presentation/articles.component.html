@@ -1,0 +1,62 @@
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <!-- Encabezado -->
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-3xl">Artículos</h2>
+      <p class="mt-2 text-lg text-gray-600">
+        "Santifícalos en tu verdad; tu palabra es la verdad Juan 17:17"
+      </p>
+    </div>
+
+    <!-- Contenedor Lista + paginación -->
+    <div class="flex flex-col flex-1 justify-between">
+      <!-- Lista de artículos -->
+      <div
+        class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        <ng-container *ngFor="let article of articles()">
+          <article
+            class="flex max-w-xl flex-col items-start justify-between rounded-md border border-gray-200 shadow-sm p-5 transition hover:shadow-md bg-white">
+
+            <!-- Imagen decorativa -->
+            <!-- <img [src]="article.imageUrl || 'https://picsum.photos/600/300'" -->
+            <a [routerLink]="['/articles', article.slug]" class="w-full h-40 object-cover rounded-md mb-4">
+              <img src="https://picsum.photos/600/300" alt="Imagen del artículo" />
+            </a>
+            <!-- Fecha -->
+            <div class="flex items-center gap-x-4 text-xs mb-2">
+              <time [attr.datetime]="article.createdAt" class="text-gray-500">
+                Publicado. {{ article.createdAt | date: 'mediumDate' }}
+              </time>
+            </div>
+
+            <!-- Título y contenido -->
+            <div class="group relative w-full">
+              <h3 class="mt-1 text-xl font-semibold text-gray-900 group-hover:text-gray-00 transition">
+                <a [routerLink]="['/articles', article.slug]">
+                  <span class="absolute inset-0"></span>
+                  {{ article.title }}
+                </a>
+              </h3>
+              <!-- <p class="prose max-w-none" [innerHTML]="((article.content | slice: 0:30) + '...') | markdown"></p> -->
+            </div>
+
+            <!-- Autor -->
+            <div class="mt-6 flex items-center gap-x-4">
+              <img src="https://i.pravatar.cc/100" alt="Foto del autor" class="size-10 rounded-full bg-gray-50" />
+              <div class="text-sm">
+                <p class="font-semibold text-gray-900">
+                  <!-- {{ article.user?.people?.firstName }} {{ article.user?.people?.lastName }} -->
+                  {{ article.author?.firstName }} {{ article.author?.lastName }}
+                </p>
+                <p class="text-gray-600">Autor</p>
+              </div>
+            </div>
+          </article>
+        </ng-container>
+      </div>
+
+      <!-- Paginación -->
+      <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="onPageChange($event)">
+      </app-pagination>
+    </div>
+  </div>

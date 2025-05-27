@@ -1,0 +1,38 @@
+/* Base de paginación */
+.pagination-btn {
+  @media (min-width: 0px) {
+    padding: 0.375rem 0.75rem;           /* px-3 py-1.5 */
+    border-radius: 1rem;             /* rounded-md */
+    /*border: 1px solid rgb(209 213 219);  /* border-gray-300 */
+    font-size: 0.875rem;                 /* text-sm */
+    font-weight: 500;                    /* font-medium */
+    color: rgb(55 65 81);                /* text-gray-700 */
+    background-color: white;            /* bg-white */
+    width: 2rem;                         /* w-8 */
+    height: 2rem;                        /* h-8 */
+    display: flex;                       /* flex */
+    align-items: center;                /* items-center */
+    justify-content: center;            /* justify-center */
+    transition: all 0.2s ease-in-out;
+  }
+}
+.pagination-btn:hover:not(:disabled) {
+  background-color: rgb(243 244 246);   /* hover:bg-gray-100 */
+}
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+/* Estado activo */
+.pagination-active {
+  background-color: rgb(220, 236, 255);   /* bg-blue-100 */
+  color: rgb(29 78 216);                /* text-blue-700 */
+  border-color: rgb(147 197 253);       /* border-blue-300 */
+}
+
+/* Puntos suspensivos */
+.pagination-dots {
+  cursor: default;
+  color: rgb(156 163 175);              /* text-gray-400 */
+}
+  

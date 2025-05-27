@@ -1,0 +1,178 @@
+<aside [ngClass]="{
+  'w-64': !collapsed(),
+  'w-18': collapsed()
+}"
+  class="h-screen bg-white text-gray-800 border-r border-gray-200 flex flex-col transition-all duration-400 ease-in-out">
+
+  <!-- Botón circular para colapsar -->
+  <div class="relative">
+    <button (click)="toggleSidebar()"
+      class="absolute -right-3 top-1/2 transform -translate-y-1/2 bg-gray-100 hover:bg-gray-200 text-gray-600 border border-gray-300 shadow-sm rounded-full p-1 transition-transform"
+      [ngClass]="{ 'rotate-180': collapsed() }" aria-label="Toggle sidebar">
+      <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Navegación -->
+  <nav class="flex-1 px-4 py-4 overflow-y-auto">
+
+    <!-- Inicio -->
+    <a routerLink="/dashboard/user" routerLinkActive=" bg-gray-100"
+      class="flex items-center gap-1 p-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100">
+
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 transform" [ngClass]="{
+  'scale-110': collapsed(),
+  'scale-100': !collapsed()
+}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+          <path
+            d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        </svg>
+      </div>
+
+      <span class="inline-block overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out" [ngClass]="{
+      'opacity-0 w-0 ml-0 scale-95': collapsed(),
+      'opacity-100 w-auto ml-3 scale-100': !collapsed()
+    }">
+        Inicio
+      </span>
+    </a>
+
+    <!-- Directorio -->
+    <a routerLink="/dashboard/admin/directorio" routerLinkActive="bg-gray-100"
+      class="flex items-center gap-1 p-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100">
+
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 transform" [ngClass]="{
+  'scale-110': collapsed(),
+  'scale-100': !collapsed()
+}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" class="lucide lucide-user-pen-icon lucide-user-pen">
+          <path d="M11.5 15H7a4 4 0 0 0-4 4v2" />
+          <path
+            d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
+          <circle cx="10" cy="7" r="4" />
+        </svg>
+      </div>
+
+      <span class="inline-block overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out" [ngClass]="{
+      'opacity-0 w-0 ml-0 scale-95': collapsed(),
+      'opacity-100 w-auto ml-3 scale-100': !collapsed()
+    }">
+        Directorio
+      </span>
+    </a>
+
+    <!-- Artículos -->
+    <a routerLink="/dashboard/admin/articulos" routerLinkActive="bg-gray-100"
+      class="flex items-center gap-1 p-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100">
+
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 transform" [ngClass]="{
+  'scale-110': collapsed(),
+  'scale-100': !collapsed()
+}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" class="lucide lucide-book-open-text-icon lucide-book-open-text">
+          <path d="M12 7v14" />
+          <path d="M16 12h2" />
+          <path d="M16 8h2" />
+          <path
+            d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+          <path d="M6 12h2" />
+          <path d="M6 8h2" />
+        </svg>
+      </div>
+
+      <span class="inline-block overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out" [ngClass]="{
+      'opacity-0 w-0 ml-0 scale-95': collapsed(),
+      'opacity-100 w-auto ml-3 scale-100': !collapsed()
+    }">
+        Artículos</span>
+    </a>
+
+    <!-- Media -->
+    <a routerLink="/dashboard/user/donaciones"
+      class="flex items-center gap-1 p-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100">
+
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 transform" [ngClass]="{
+  'scale-110': collapsed(),
+  'scale-100': !collapsed()
+}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" class="lucide lucide-square-play-icon lucide-square-play">
+          <rect width="18" height="18" x="3" y="3" rx="2" />
+          <path d="m9 8 6 4-6 4Z" />
+        </svg>
+      </div>
+
+      <span class="inline-block overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out" [ngClass]="{
+      'opacity-0 w-0 ml-0 scale-95': collapsed(),
+      'opacity-100 w-auto ml-3 scale-100': !collapsed()
+    }">
+        Media</span>
+    </a>
+
+    <!-- Eventos -->
+    <a routerLink="/dashboard/user/donaciones"
+      class="flex items-center gap-1 p-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100">
+
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 transform" [ngClass]="{
+  'scale-110': collapsed(),
+  'scale-100': !collapsed()
+}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" class="lucide lucide-calendar-cog-icon lucide-calendar-cog">
+          <path d="m15.2 16.9-.9-.4" />
+          <path d="m15.2 19.1-.9.4" />
+          <path d="M16 2v4" />
+          <path d="m16.9 15.2-.4-.9" />
+          <path d="m16.9 20.8-.4.9" />
+          <path d="m19.5 14.3-.4.9" />
+          <path d="m19.5 21.7-.4-.9" />
+          <path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6" />
+          <path d="m21.7 16.5-.9.4" />
+          <path d="m21.7 19.5-.9-.4" />
+          <path d="M3 10h18" />
+          <path d="M8 2v4" />
+          <circle cx="18" cy="18" r="3" />
+        </svg>
+      </div>
+
+
+      <span class="inline-block overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out" [ngClass]="{
+      'opacity-0 w-0 ml-0 scale-95': collapsed(),
+      'opacity-100 w-auto ml-3 scale-100': !collapsed()
+    }">
+        Eventos</span>
+    </a>
+
+    <!-- Suscriptores -->
+    <a routerLink="/dashboard/user/donaciones"
+      class="flex items-center gap-1 p-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100">
+
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 transform" [ngClass]="{
+  'scale-110': collapsed(),
+  'scale-100': !collapsed()
+}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" class="lucide lucide-users-round-icon lucide-users-round">
+          <path d="M18 21a8 8 0 0 0-16 0" />
+          <circle cx="10" cy="8" r="5" />
+          <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+        </svg>
+      </div>
+
+      <span class="inline-block overflow-hidden whitespace-nowrap transition-all duration-500 ease-in-out" [ngClass]="{
+      'opacity-0 w-0 ml-0 scale-95': collapsed(),
+      'opacity-100 w-auto ml-3 scale-100': !collapsed()
+    }">
+        Suscriptores</span>
+    </a>
+  </nav>
+
+  <!-- Footer -->
+</aside>

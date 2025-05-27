@@ -1,0 +1,17 @@
+<div class="mt-4 flex justify-end space-x-2">
+  <button (click)="setPage(1)" [disabled]="currentPage === 1" class="pagination-btn">«</button>
+  <button class="pagination-btn" [disabled]="!canGoBack" (click)="setPage(currentPage - 1)">‹</button>
+
+  <!-- Show the first page if currentPage is greater than 3  -->
+  <ng-container *ngFor="let page of visiblePages()">
+    <button class="pagination-btn" [ngClass]="{
+          'pagination-active': page === currentPage,
+          'pagination-dots': page === -1
+        }" [disabled]="page === -1" (click)="setPage(page)">
+      {{ page === -1 ? '…' : page }}
+    </button>
+  </ng-container>
+
+  <button class="pagination-btn" [disabled]="!canGoNext" (click)="setPage(currentPage + 1)">›</button>
+  <button (click)="setPage(totalPages)" [disabled]="currentPage === totalPages" class="pagination-btn">»</button>
+</div>

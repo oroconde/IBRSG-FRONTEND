@@ -27,12 +27,14 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/@toast-ui/editor/dist/toastui-editor.css"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "aot": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -48,6 +50,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "aot": true,
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -92,5 +95,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -1,0 +1,90 @@
+<div>
+  <header class=" fixed inset-x-0 top-0 z-50 bg-white shadow-md">
+    <!-- NAV -->
+    <nav class="mx-auto max-w-[1400px] flex items-center justify-between p-4 lg:px-8" aria-label="Global">
+
+      <!-- Logo -->
+      <div class="flex lg:flex-1">
+        <a routerLink="/" class="-m-1.5 p-1.5">
+          <span class="sr-only">Your Company</span>
+          <img class="h-10 w-auto" src="logo.svg" alt="Logo" />
+        </a>
+      </div>
+
+      <!-- Botón menú móvil -->
+      <div class="flex lg:hidden">
+        <button type="button" (click)="toggleMenu()"
+          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- LINKS DESKTOP -->
+      <div class="hidden lg:flex lg:gap-x-12">
+        <!-- CAMBIO: aumentamos tamaño con text-base lg:text-lg -->
+        <a routerLink="/articles" class="text-base text-sm font-medium text-gray-900 hover:text-blue-600">Artículos</a>
+        <a routerLink="/media" class="text-base text-sm font-medium text-gray-900 hover:text-blue-600">Media</a>
+        <a routerLink="/events" class="text-base text-sm font-medium text-gray-900 hover:text-blue-600">Eventos</a>
+        <a routerLink="/about" class="text-base text-sm font-medium text-gray-900 hover:text-blue-600">¿Quiénes
+          Somos?</a>
+        <a routerLink="/donations"
+          class="text-base text-sm font-medium text-gray-900 hover:text-blue-600">Donaciones</a>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a routerLink="/login" class="text-base text-sm font-medium text-gray-900 hover:text-blue-600">
+          Iniciar sesión <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- MENÚ MÓVIL -->
+    <div
+      class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white px-6 py-6 transition-transform duration-300 ease-in-out lg:hidden shadow-lg"
+      [class.translate-x-full]="!mobileMenuOpen" [class.translate-x-0]="mobileMenuOpen">
+
+      <!-- Cierre -->
+      <div class="flex items-center justify-between">
+        <a routerLink="/" (click)="closeMenu()" class="-m-1.5 p-1.5">
+          <span class="sr-only">Your Company</span>
+          <img class="h-8 w-auto" src="logo.svg" alt="Logo" />
+        </a>
+        <button type="button" (click)="closeMenu()" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Close menu</span>
+          <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Enlaces móviles (sin cambios, ya estaban en buen tamaño) -->
+      <div class="mt-6 flow-root">
+        <div class="-my-6 divide-y divide-gray-500/10">
+          <div class="space-y-2 py-6">
+            <a routerLink="/articles" (click)="closeMenu()"
+              class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Artículos</a>
+            <a routerLink="/media" (click)="closeMenu()"
+              class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Media</a>
+            <a routerLink="/events" (click)="closeMenu()"
+              class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Eventos</a>
+            <a routerLink="/about" (click)="closeMenu()"
+              class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">¿Quiénes
+              Somos?</a>
+            <a routerLink="/donations" (click)="closeMenu()"
+              class="block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Donaciones</a>
+          </div>
+          <div class="py-6">
+            <a routerLink="/login" (click)="closeMenu()"
+              class="block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50">Iniciar
+              sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+</div>

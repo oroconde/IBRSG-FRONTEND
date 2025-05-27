@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio - Usuario Básico</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-screen flex bg-gray-50 text-gray-800">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-white border-r shadow-sm flex flex-col">
+    <div class="p-6 border-b">
+      <h1 class="text-xl font-bold text-blue-600">Mi Panel</h1>
+    </div>
+    <nav class="flex-1 p-4 space-y-2 text-sm">
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        👤 <span>Mi Perfil</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        💰 <span>Mis Donaciones</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        📝 <span>Mis Artículos</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        📩 <span>Suscripción</span>
+      </a>
+    </nav>
+    <div class="p-4 text-xs text-gray-400 border-t">
+      © 2025 TuProyecto
+    </div>
+  </aside>
+
+  <!-- CONTENIDO -->
+  <main class="flex-1 overflow-y-auto p-8">
+    <!-- BIENVENIDA -->
+    <section class="mb-6">
+      <h2 class="text-2xl font-bold">👋 ¡Hola, Juan!</h2>
+      <p class="text-gray-600 mt-1">Aquí puedes ver tu perfil, artículos y donaciones.</p>
+    </section>
+
+    <!-- ACTIVIDAD PERSONAL -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-4">📌 Tu actividad reciente</h3>
+      <ul class="space-y-4 bg-white border rounded-xl p-4 shadow-sm">
+        <li class="flex gap-3">
+          <span class="w-10 h-10 bg-yellow-100 text-yellow-700 flex items-center justify-center rounded-full">💰</span>
+          <div>
+            <p class="text-sm font-medium">Donaste <strong>$25</strong> a la campaña “Niños sin fronteras”</p>
+            <p class="text-xs text-gray-500">Hace 2 días</p>
+          </div>
+        </li>
+        <li class="flex gap-3">
+          <span class="w-10 h-10 bg-blue-100 text-blue-600 flex items-center justify-center rounded-full">📝</span>
+          <div>
+            <p class="text-sm font-medium">Publicaste el artículo: <strong>“Cómo empecé a donar”</strong></p>
+            <p class="text-xs text-gray-500">Hace 5 días</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ACCESOS RÁPIDOS -->
+    <section>
+      <h3 class="text-lg font-semibold mb-4">🚀 Accesos rápidos</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+        <a href="#" class="block p-4 border rounded-lg bg-white hover:bg-gray-50 shadow-sm">
+          <div class="text-lg mb-1">👤 <strong>Editar Perfil</strong></div>
+          <p class="text-sm text-gray-500">Actualiza tu nombre, correo y contraseña</p>
+        </a>
+        <a href="#" class="block p-4 border rounded-lg bg-white hover:bg-gray-50 shadow-sm">
+          <div class="text-lg mb-1">💰 <strong>Ver Donaciones</strong></div>
+          <p class="text-sm text-gray-500">Consulta tu historial de aportes</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio - Dashboard Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-screen flex bg-gray-50 text-gray-800">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-white border-r shadow-sm flex flex-col">
+    <div class="p-6 border-b">
+      <h1 class="text-xl font-bold text-blue-600">Admin Panel</h1>
+    </div>
+    <nav class="flex-1 p-4 space-y-2 text-sm">
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        👤 <span>Usuarios</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        ⚙️ <span>Roles</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        📩 <span>Suscriptores</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        💰 <span>Donaciones</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        🖼️ <span>Media</span>
+      </a>
+      <a href="#" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+        📝 <span>Artículos</span>
+      </a>
+    </nav>
+    <div class="p-4 text-xs text-gray-400 border-t">
+      © 2025 TuProyecto
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 overflow-y-auto p-8">
+    <!-- BIENVENIDA -->
+    <section class="mb-6">
+      <h2 class="text-2xl font-bold">👋 Bienvenido, Administrador</h2>
+      <p class="text-gray-600 mt-1">Gestiona tus módulos desde este panel central.</p>
+    </section>
+
+    <!-- ACTIVIDAD RECIENTE -->
+    <section class="mb-8">
+      <h3 class="text-lg font-semibold mb-4">📌 Actividad Reciente</h3>
+      <ul class="space-y-4 bg-white border rounded-xl p-4 shadow-sm">
+        <li class="flex gap-3">
+          <span class="w-10 h-10 bg-green-100 text-green-600 flex items-center justify-center rounded-full">✔️</span>
+          <div>
+            <p class="text-sm font-medium">Usuario <strong>María Pérez</strong> fue creado</p>
+            <p class="text-xs text-gray-500">Hace 5 minutos</p>
+          </div>
+        </li>
+        <li class="flex gap-3">
+          <span class="w-10 h-10 bg-yellow-100 text-yellow-700 flex items-center justify-center rounded-full">💰</span>
+          <div>
+            <p class="text-sm font-medium">Donación de <strong>Juan Ríos</strong> por <strong>$50</strong></p>
+            <p class="text-xs text-gray-500">Hace 30 minutos</p>
+          </div>
+        </li>
+        <li class="flex gap-3">
+          <span class="w-10 h-10 bg-blue-100 text-blue-600 flex items-center justify-center rounded-full">📩</span>
+          <div>
+            <p class="text-sm font-medium">Nuevo suscriptor: <strong>Carlos Mendoza</strong></p>
+            <p class="text-xs text-gray-500">Hace 2 horas</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ACCESOS RÁPIDOS -->
+    <section>
+      <h3 class="text-lg font-semibold mb-4">🚀 Accesos Rápidos</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="#" class="block p-4 border rounded-lg bg-white hover:bg-gray-50 shadow-sm">
+          <div class="text-lg mb-1">👤 <strong>Usuarios</strong></div>
+          <p class="text-sm text-gray-500">Gestiona el registro y edición de usuarios</p>
+        </a>
+        <a href="#" class="block p-4 border rounded-lg bg-white hover:bg-gray-50 shadow-sm">
+          <div class="text-lg mb-1">⚙️ <strong>Roles</strong></div>
+          <p class="text-sm text-gray-500">Define permisos para distintos perfiles</p>
+        </a>
+        <a href="#" class="block p-4 border rounded-lg bg-white hover:bg-gray-50 shadow-sm">
+          <div class="text-lg mb-1">📝 <strong>Artículos</strong></div>
+          <p class="text-sm text-gray-500">Publica y edita artículos informativos</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+</body>
+
+</html>

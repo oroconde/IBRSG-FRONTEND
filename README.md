@@ -1,4 +1,4 @@
-# IbrsgFrontendCore
+# IBRSG Front-End
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
 
@@ -54,6 +54,25 @@ ng e2e
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
+## Routing
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**URLs**
+
+Con la estructura actual que ya tienes y la configuración que hicimos, tus rutas quedarían así:
+
+|URL|¿Qué muestra?|Protegida por...|
+|---|---|---|
+|`/`|Página principal (home pública)|❌ No|
+|`/login`|Formulario de inicio de sesión|❌ No|
+|`/about`|Sección “Acerca de”|❌ No|
+|`/media`|Página de galería o contenido multimedia|❌ No|
+|`/donations`|Página pública de donaciones|❌ No|
+|`/articles`|Listado de artículos|❌ No|
+|`/articles/:slug`|Detalle de un artículo|❌ No|
+|`/dashboard/admin`|Dashboard exclusivo para administradores|✅ `AdminGuard`|
+|`/dashboard/user`|Dashboard exclusivo para usuarios básicos|✅ `UserGuard`|
+
+
+Estas rutas cargan dentro del PrivateLayoutComponent, el cual puedes usar para incluir `<app-sidebar>` y `<app-private-header>`.
+
+
