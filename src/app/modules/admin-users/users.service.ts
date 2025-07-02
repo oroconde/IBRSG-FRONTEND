@@ -2,8 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseApiService } from '../../core/services/base-api.service';
 import { environment } from '../../../enviroments/environment';
-import { IPersonWithUser } from './interfaces/article.interface';
-import { Observable } from 'rxjs';
+import {
+  City,
+  Country,
+  Department,
+  IPersonWithUser,
+} from './interfaces/user.interface';
+import { map, Observable } from 'rxjs';
 import { IPaginatedResponse } from '../../core/interfaces/paginated.response.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -23,12 +28,18 @@ export class UsersService extends BaseApiService<IPersonWithUser> {
     return this.findAll({ params });
   }
 
+  getCountries(): Observable<Country[]> {
+    return this.http
+      .get<{ data: { docs: Country[] } }>('/api/v2/catalogs/countries')
+      .pipe(map((response) => response.data.docs));
+  }
+
   /**
    * ✅ Crear nuevo usuario
    */
-  createUser(payload: Partial<IPersonWithUser>): Observable<IPersonWithUser> {
-    return this.create(payload);
-  }
+  // createUser(payload: Partial<IPersonWithUser>): Observable<IPersonWithUser> {
+  //   return this.create(payload);
+  // }
 
   /**
    * ✅ Actualizar usuario
