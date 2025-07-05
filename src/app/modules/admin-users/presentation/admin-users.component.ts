@@ -12,7 +12,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from '../../../shared-components/ui/pagination/pagination.component';
-import { IPersonWithUser } from '../interfaces/article.interface';
+// import { IPersonWithUser } from '../interfaces/article.interface';
 import { UsersService } from '../users.service';
 
 // @Component({
@@ -279,7 +279,7 @@ export class AdminUsersComponent {
 
   readonly page = signal(1);
   readonly totalPages = signal(1);
-  readonly usersList = signal<IPersonWithUser[]>([]);
+  readonly usersList = signal<any[]>([]);
   readonly limit = 10;
   readonly searchControl = signal('');
 
