@@ -63,8 +63,8 @@ export class ArticleDetailComponent {
   article$: Observable<Article | null> = this.route.paramMap.pipe(
     map((params) => params.get('slug')),
     switchMap((slug) =>
-      slug ? this.articleService.getArticleBySlug(slug) : of(null)
+      slug ? this.articleService.getArticleBySlug(slug) : of(null),
     ),
-    map((res) => res?.data ?? null)
+    map((res) => res?.data ?? null),
   );
 }

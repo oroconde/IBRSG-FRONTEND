@@ -10,14 +10,14 @@ export const adminUsersRoutes: Routes = [
     path: 'nuevo',
     loadComponent: () =>
       import('./presentation/admin-users-form.component').then(
-        (m) => m.AdminUsersFormComponent
+        (m) => m.AdminUsersFormComponent,
       ),
   },
   {
     path: ':id/editar',
     loadComponent: () =>
       import('./presentation/admin-users-form.component').then(
-        (m) => m.AdminUsersFormComponent
+        (m) => m.AdminUsersFormComponent,
       ),
   },
 ];

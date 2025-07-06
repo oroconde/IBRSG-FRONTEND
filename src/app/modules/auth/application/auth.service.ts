@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.post(
       `${this.API_URL}/auth/login`,
       { email, password },
-      { withCredentials: true } // ✅ para que Angular maneje cookies
+      { withCredentials: true }, // ✅ para que Angular maneje cookies
     );
   }
 
@@ -32,15 +32,14 @@ export class AuthService {
   checkAuthStatus() {
     console.log('[AuthService] checkAuthStatus called');
     return this.http
-      .get<{ data: { token: string; user: UserProfile } }>(
-        `${this.API_URL}/auth/check-status`,
-        { withCredentials: true }
-      )
+      .get<{
+        data: { token: string; user: UserProfile };
+      }>(`${this.API_URL}/auth/check-status`, { withCredentials: true })
       .pipe(
         tap((res) => {
           console.log('[AuthService] checkAuthStatus response:', res);
           this.user.set(res.data.user);
-        })
+        }),
       );
   }
 

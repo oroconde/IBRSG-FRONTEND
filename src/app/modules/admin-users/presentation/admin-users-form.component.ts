@@ -64,7 +64,7 @@ export class AdminUsersFormComponent implements OnInit {
   loadPaises(): void {
     this.countriesService.getAllCountries().subscribe({
       next: (data) => {
-        this.paises = data; 
+        this.paises = data;
       },
       error: (err) => {
         this.paises = [];
@@ -77,11 +77,12 @@ export class AdminUsersFormComponent implements OnInit {
     if (!country) return;
 
     this.countriesService.getDepartments(country).subscribe({
-      next: (data) => (this.departamentos = data.map((d: any) => ({
-        id: d.id,
-        nombre: d.nombre,
-        countryId: d.countryId ?? this.f['paisId'].value
-      }))),
+      next: (data) =>
+        (this.departamentos = data.map((d: any) => ({
+          id: d.id,
+          nombre: d.nombre,
+          countryId: d.countryId ?? this.f['paisId'].value,
+        }))),
       error: (err) => {
         console.error('Error cargando departamentos:', err);
         this.departamentos = [];
@@ -99,11 +100,13 @@ export class AdminUsersFormComponent implements OnInit {
     if (!country || !state) return;
 
     this.countriesService.getCities(country, state).subscribe({
-      next: (data) => (this.ciudades = data.map((c: any) => ({
-        id: c.id,
-        nombre: c.nombre,
-        departmentsId: c.departmentsId ?? c.departmentId ?? this.f['departamentoId'].value
-      }))),
+      next: (data) =>
+        (this.ciudades = data.map((c: any) => ({
+          id: c.id,
+          nombre: c.nombre,
+          departmentsId:
+            c.departmentsId ?? c.departmentId ?? this.f['departamentoId'].value,
+        }))),
       error: (err) => {
         console.error('Error cargando ciudades:', err);
         this.ciudades = [];

@@ -10,14 +10,14 @@ export const adminArticlesRoutes: Routes = [
     path: 'nuevo',
     loadComponent: () =>
       import('./presentation/admin-articles-form.component').then(
-        (m) => m.AdminArticlesFormComponent
+        (m) => m.AdminArticlesFormComponent,
       ),
   },
   {
     path: ':id/editar',
     loadComponent: () =>
       import('./presentation/admin-articles-form.component').then(
-        (m) => m.AdminArticlesFormComponent
+        (m) => m.AdminArticlesFormComponent,
       ),
   },
 ];

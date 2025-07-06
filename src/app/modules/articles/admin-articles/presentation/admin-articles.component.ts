@@ -112,7 +112,7 @@ export class AdminArticlesComponent {
   handleClickOutside(event: MouseEvent): void {
     if (!this.menuRef?.nativeElement) return;
     const clickedInside = this.menuRef.nativeElement.contains(
-      event.target as Node
+      event.target as Node,
     );
     if (!clickedInside) this.closeMenu();
   }

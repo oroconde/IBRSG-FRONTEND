@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AuthInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     const token = sessionStorage.getItem('access_token'); // o usa un servicio
 

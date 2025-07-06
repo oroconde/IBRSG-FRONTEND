@@ -1,128 +1,207 @@
 <div class="max-w-auto flex flex-col min-h-[80vh]">
+  <!-- Encabezado -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-semibold text-gray-800">Gestión de Artículos</h1>
+    <a
+      routerLink="nuevo"
+      class="bg-white items-center gap-3 p-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100 border border-gray-300"
+    >
+      ＋ Nuevo artículo
+    </a>
+  </div>
 
-    <!-- Encabezado -->
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-800">Gestión de Artículos</h1>
-        <a routerLink="nuevo"
-            class="bg-white items-center gap-3 p-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100 border border-gray-300">
-            ＋ Nuevo artículo
-        </a>
-    </div>
+  <!-- Contenedor tabla + paginación -->
+  <div class="flex flex-col flex-1 justify-between">
+    <!-- Tabla -->
+    <div>
+      <div
+        class="bg-white border border-gray-100 rounded-lg overflow-x-auto min-h-[420px]"
+      >
+        <table class="min-w-full divide-y divide-gray-200 text-sm">
+          <thead class="bg-gray-100">
+            <tr>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700"></th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">
+                Título
+              </th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">
+                Autor
+              </th>
 
-    <!-- Contenedor tabla + paginación -->
-    <div class="flex flex-col flex-1 justify-between">
+              <!-- <th class="px-4 py-3 text-left font-semibold text-gray-700">Serie</th> -->
 
-        <!-- Tabla -->
-        <div>
-            <div class=" bg-white border border-gray-100 rounded-lg overflow-x-auto min-h-[420px]">
-                <table class="min-w-full divide-y divide-gray-200 text-sm">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700"></th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Título</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Autor</th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">
+                Creado
+              </th>
+              <th class="px-4 py-3 text-left font-semibold text-gray-700">
+                Actualizado
+              </th>
+              <th class="px-4 py-3 text-right font-semibold text-gray-700">
+                Acciones
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr
+              *ngFor="let article of articles(); let i = index"
+              class="hover:bg-gray-100 transition-colors duration-100"
+            >
+              <!-- <td class="px-4 py-1 text-gray-700">{{ i + 1 }}</td> -->
 
-                            <!-- <th class="px-4 py-3 text-left font-semibold text-gray-700">Serie</th> -->
+              <td class="px-4 py-1 text-gray-700">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-square-library-icon lucide-square-library"
+                >
+                  <rect width="18" height="18" x="3" y="3" rx="2" />
+                  <path d="M7 7v10" />
+                  <path d="M11 7v10" />
+                  <path d="m15 7 2 10" />
+                </svg>
+              </td>
 
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Creado</th>
-                            <th class="px-4 py-3 text-left font-semibold text-gray-700">Actualizado</th>
-                            <th class="px-4 py-3 text-right font-semibold text-gray-700">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        <tr *ngFor="let article of articles(); let i = index"
-                            class="hover:bg-gray-100 transition-colors duration-100">
-
-                            <!-- <td class="px-4 py-1 text-gray-700">{{ i + 1 }}</td> -->
-
-                            <td class="px-4 py-1 text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                    height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-square-library-icon lucide-square-library">
-                                    <rect width="18" height="18" x="3" y="3" rx="2" />
-                                    <path d="M7 7v10" />
-                                    <path d="M11 7v10" />
-                                    <path d="m15 7 2 10" />
-                                </svg></td>
-
-                            <td class="px-4 py-1 text-gray-900 font-medium">{{ article.title }}</td>
-                            <td class="px-4 py-1 text-gray-700">
-                                {{ article.author?.firstName }} {{ article.author?.lastName }}
-                            </td>
-                            <!-- <td class="px-4 py-1 text-gray-500">
+              <td class="px-4 py-1 text-gray-900 font-medium">
+                {{ article.title }}
+              </td>
+              <td class="px-4 py-1 text-gray-700">
+                {{ article.author?.firstName }} {{ article.author?.lastName }}
+              </td>
+              <!-- <td class="px-4 py-1 text-gray-500">
                                 {{ article.theme?.catalogType }}
                             </td> -->
-                            <td class="px-4 py-1 text-gray-500">{{ article.createdAt | date: 'mediumDate' }}</td>
-                            <td class="px-4 py-1 text-gray-500">{{ article.updatedAt | date: 'mediumDate' }}</td>
-                            <td class="px-4 py-1 text-right">
-                                <button (click)="toggleMenu(article.id, $event)" type="button"
-                                    class="p-2 inline-flex rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100 flex items-center gap-3 focus:bg-gray-100 focus:outline-none"
-                                    aria-haspopup="true">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-                                        viewBox="0 0 24 24">
-                                        <circle cx="12" cy="12" r="1" />
-                                        <circle cx="12" cy="5" r="1" />
-                                        <circle cx="12" cy="19" r="1" />
-                                    </svg>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Menú de acciones flotante -->
-        <div #menuRef *ngIf="openMenuId() !== null" [ngStyle]="dropdownPosition()"
-            class="fixed z-50 mt-1 w-35 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 transition duration-200 ease-out"
-            role="menu" aria-orientation="vertical" tabindex="-1">
-            <div role="none">
-                <!-- Opción: Ver -->
-                <a (click)="verArticulo(openMenuId()!)" role="menuitem"
-                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
-                    <svg class="mr-2 size-4 text-gray-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path
-                            d="M12.232 4.232a2.5 2.5 0 0 1 3.536 3.536l-1.225 1.224a.75.75 0 0 0 1.061 1.06l1.224-1.224a4 4 0 0 0-5.656-5.656l-3 3a4 4 0 0 0 .225 5.865.75.75 0 0 0 .977-1.138 2.5 2.5 0 0 1-.142-3.667l3-3Z" />
-                        <path
-                            d="M11.603 7.963a.75.75 0 0 0-.977 1.138 2.5 2.5 0 0 1 .142 3.667l-3 3a2.5 2.5 0 0 1-3.536-3.536l1.225-1.224a.75.75 0 0 0-1.061-1.06l-1.224 1.224a4 4 0 1 0 5.656 5.656l3-3a4 4 0 0 0-.225-5.865Z" />
-                    </svg>
-                    Ver
-                </a>
-
-                <!-- Opción: Editar -->
-                <a [routerLink]="openMenuId() + '/editar'" (click)="closeMenu()" role="menuitem"
-                    class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 size-4 text-gray-500" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" aria-hidden="true">
-                        <path
-                            d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
-                        <path d="m15 5 4 4" />
-                    </svg>
-                    Editar
-                </a>
-
-
-                <!-- Opción: Eliminar -->
-                <button (click)="deleteArticle(openMenuId()!); closeMenu()" type="button" role="menuitem"
-                    class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 size-4 text-red-500" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M3 6h18" />
-                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                        <line x1="10" x2="10" y1="11" y2="17" />
-                        <line x1="14" x2="14" y1="11" y2="17" />
-                    </svg>
-                    Eliminar
+              <td class="px-4 py-1 text-gray-500">
+                {{ article.createdAt | date: "mediumDate" }}
+              </td>
+              <td class="px-4 py-1 text-gray-500">
+                {{ article.updatedAt | date: "mediumDate" }}
+              </td>
+              <td class="px-4 py-1 text-right">
+                <button
+                  (click)="toggleMenu(article.id, $event)"
+                  type="button"
+                  class="p-2 inline-flex rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100 flex items-center gap-3 focus:bg-gray-100 focus:outline-none"
+                  aria-haspopup="true"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="12" cy="5" r="1" />
+                    <circle cx="12" cy="19" r="1" />
+                  </svg>
                 </button>
-
-            </div>
-        </div>
-
-        <!-- Paginación -->
-        <app-pagination [currentPage]="currentPage()" [totalPages]="totalPages()" (pageChange)="onPageChange($event)">
-        </app-pagination>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+
+    <!-- Menú de acciones flotante -->
+    <div
+      #menuRef
+      *ngIf="openMenuId() !== null"
+      [ngStyle]="dropdownPosition()"
+      class="fixed z-50 mt-1 w-35 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 transition duration-200 ease-out"
+      role="menu"
+      aria-orientation="vertical"
+      tabindex="-1"
+    >
+      <div role="none">
+        <!-- Opción: Ver -->
+        <a
+          (click)="verArticulo(openMenuId()!)"
+          role="menuitem"
+          class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+        >
+          <svg
+            class="mr-2 size-4 text-gray-600"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M12.232 4.232a2.5 2.5 0 0 1 3.536 3.536l-1.225 1.224a.75.75 0 0 0 1.061 1.06l1.224-1.224a4 4 0 0 0-5.656-5.656l-3 3a4 4 0 0 0 .225 5.865.75.75 0 0 0 .977-1.138 2.5 2.5 0 0 1-.142-3.667l3-3Z"
+            />
+            <path
+              d="M11.603 7.963a.75.75 0 0 0-.977 1.138 2.5 2.5 0 0 1 .142 3.667l-3 3a2.5 2.5 0 0 1-3.536-3.536l1.225-1.224a.75.75 0 0 0-1.061-1.06l-1.224 1.224a4 4 0 1 0 5.656 5.656l3-3a4 4 0 0 0-.225-5.865Z"
+            />
+          </svg>
+          Ver
+        </a>
+
+        <!-- Opción: Editar -->
+        <a
+          [routerLink]="openMenuId() + '/editar'"
+          (click)="closeMenu()"
+          role="menuitem"
+          class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="mr-2 size-4 text-gray-500"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path
+              d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
+            />
+            <path d="m15 5 4 4" />
+          </svg>
+          Editar
+        </a>
+
+        <!-- Opción: Eliminar -->
+        <button
+          (click)="deleteArticle(openMenuId()!); closeMenu()"
+          type="button"
+          role="menuitem"
+          class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="mr-2 size-4 text-red-500"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 6h18" />
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+            <line x1="10" x2="10" y1="11" y2="17" />
+            <line x1="14" x2="14" y1="11" y2="17" />
+          </svg>
+          Eliminar
+        </button>
+      </div>
+    </div>
+
+    <!-- Paginación -->
+    <app-pagination
+      [currentPage]="currentPage()"
+      [totalPages]="totalPages()"
+      (pageChange)="onPageChange($event)"
+    >
+    </app-pagination>
+  </div>
 </div>

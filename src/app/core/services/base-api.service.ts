@@ -30,7 +30,7 @@ export abstract class BaseApiService<T extends BaseEntity> {
 
   create<U extends Partial<T>>(
     data: U,
-    options: IRequestOptions = {}
+    options: IRequestOptions = {},
   ): Observable<T> {
     return this.http
       .post<T>(this.baseUrl, data, this.buildOptions(options))
@@ -52,7 +52,7 @@ export abstract class BaseApiService<T extends BaseEntity> {
   update<U extends Partial<T>>(
     id: number | string,
     data: U,
-    options: IRequestOptions = {}
+    options: IRequestOptions = {},
   ): Observable<T> {
     return this.http
       .put<T>(`${this.baseUrl}/${id}`, data, this.buildOptions(options))
@@ -71,7 +71,7 @@ export abstract class BaseApiService<T extends BaseEntity> {
   uploadFile(
     endpoint: string, // ejemplo: /upload o /{id}/document
     formData: FormData,
-    options: IRequestOptions = {}
+    options: IRequestOptions = {},
   ): Observable<number | 'done'> {
     return this.http
       .post(`${this.baseUrl}${endpoint}`, formData, {
@@ -90,7 +90,7 @@ export abstract class BaseApiService<T extends BaseEntity> {
               return 0;
           }
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       );
   }
 
@@ -110,7 +110,7 @@ export abstract class BaseApiService<T extends BaseEntity> {
   protected handleError(error: HttpErrorResponse) {
     console.error('API error:', error);
     return throwError(
-      () => new Error(error.message || 'Unexpected error occurred.')
+      () => new Error(error.message || 'Unexpected error occurred.'),
     );
   }
 }

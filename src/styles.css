@@ -1,23 +1,21 @@
 @import "tailwindcss";
-@import '@toast-ui/editor/dist/toastui-editor.css';
-
+@import "@toast-ui/editor/dist/toastui-editor.css";
 
 /* ✅ Personalizaciones opcionales */
 /* Iconos */
 svg.my-icon {
-    width: 12px;
-    height: 12px;
-    stroke-width: 3;
-  }
+  width: 12px;
+  height: 12px;
+  stroke-width: 3;
+}
 
 /* Editor con resize vertical */
 .toast-editor-resizable-container {
-    resize: vertical;
-    overflow: auto;
-    min-height: 300px;
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    max-height: 800px;/* límite para que no crezca indefinidamente */
+  resize: vertical;
+  overflow: auto;
+  min-height: 300px;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  max-height: 800px; /* límite para que no crezca indefinidamente */
 }
-
