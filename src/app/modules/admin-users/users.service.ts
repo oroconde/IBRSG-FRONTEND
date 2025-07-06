@@ -23,7 +23,7 @@ export class UsersService extends BaseApiService<IPersonWithUser> {
    * ✅ Obtener todos los usuarios con soporte para paginación y filtros
    */
   getAllUsers(
-    params?: Record<string, any> // : Observable<IPaginatedResponse<IPersonWithUser>>
+    params?: Record<string, any>, // : Observable<IPaginatedResponse<IPersonWithUser>>
   ) {
     return this.findAll({ params });
   }
@@ -46,7 +46,7 @@ export class UsersService extends BaseApiService<IPersonWithUser> {
    */
   updateUser(
     id: number | string,
-    payload: Partial<IPersonWithUser>
+    payload: Partial<IPersonWithUser>,
   ): Observable<IPersonWithUser> {
     return this.update(id, payload);
   }
@@ -56,7 +56,7 @@ export class UsersService extends BaseApiService<IPersonWithUser> {
    */
   findByEmail(email: string): Observable<{ data: IPersonWithUser }> {
     return this.http.get<{ data: IPersonWithUser }>(
-      `${this.baseUrl}/by-email/${email}`
+      `${this.baseUrl}/by-email/${email}`,
     );
   }
 

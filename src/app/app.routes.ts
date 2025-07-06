@@ -18,28 +18,28 @@ export const routes: Routes = [
         path: 'login',
         loadComponent: () =>
           import('./modules/auth/pages/login/login.component').then(
-            (m) => m.LoginComponent
+            (m) => m.LoginComponent,
           ),
       },
       {
         path: 'about',
         loadComponent: () =>
           import('./modules/about/about.component').then(
-            (m) => m.AboutComponent
+            (m) => m.AboutComponent,
           ),
       },
       {
         path: 'media',
         loadComponent: () =>
           import('./modules/media/media.component').then(
-            (m) => m.MediaComponent
+            (m) => m.MediaComponent,
           ),
       },
       {
         path: 'donations',
         loadComponent: () =>
           import('./modules/donations/donations/donations.component').then(
-            (m) => m.DonationsComponent
+            (m) => m.DonationsComponent,
           ),
       },
       {
@@ -53,7 +53,7 @@ export const routes: Routes = [
             path: '',
             loadComponent: () =>
               import('./modules/articles/presentation/articles.component').then(
-                (m) => m.ArticlesComponent
+                (m) => m.ArticlesComponent,
               ),
           },
           {
@@ -75,7 +75,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/dashboard/dashboard-routing.module').then(
-        (m) => m.routes
+        (m) => m.routes,
       ),
   },
 

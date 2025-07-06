@@ -73,7 +73,7 @@ export class AdminArticlesFormComponent implements OnInit {
           console.error('Error al crear artículo:', err.error);
           alert(
             'Ocurrió un error: ' +
-              JSON.stringify(err.error.message || err.message)
+              JSON.stringify(err.error.message || err.message),
           );
         },
       });

@@ -1,80 +1,124 @@
-<div class="max-w-auto mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow">
-    <h2 class="text-2xl font-semibold mb-4">
-        {{ isEditMode ? 'Editar Artículo' : 'Nuevo Artículo' }}
-    </h2>
+<div
+  class="max-w-auto mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow"
+>
+  <h2 class="text-2xl font-semibold mb-4">
+    {{ isEditMode ? "Editar Artículo" : "Nuevo Artículo" }}
+  </h2>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
-        <!-- TÍTULO -->
-        <div>
-            <label class="block text-sm font-medium text-gray-700">Título</label>
-            <input type="text" formControlName="title" required
-                class="block w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-blue-600 text-sm" />
-        </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
+    <!-- TÍTULO -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Título</label>
+      <input
+        type="text"
+        formControlName="title"
+        required
+        class="block w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-blue-600 text-sm"
+      />
+    </div>
 
-        <!-- EDITOR DE CONTENIDO CON Toast UI -->
-        <!-- <div>
+    <!-- EDITOR DE CONTENIDO CON Toast UI -->
+    <!-- <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Contenido</label>
             <app-toast-editor [initialValue]="form.get('content')?.value || ''"
                 (contentChange)="form.get('content')?.setValue($event)"></app-toast-editor>
         </div> -->
 
-        <!-- EDITOR DE CONTENIDO encapsulado CON Toast UI -->
-        <div class="toast-editor-wrapper w-full">
-            <label class="block text-sm font-medium text-gray-700 mb-1">Contenido</label>
-            <app-toast-editor [initialValue]="form.get('content')?.value || ''"
-                (contentChange)="form.get('content')?.setValue($event)">
-            </app-toast-editor>
-        </div>
+    <!-- EDITOR DE CONTENIDO encapsulado CON Toast UI -->
+    <div class="toast-editor-wrapper w-full">
+      <label class="block text-sm font-medium text-gray-700 mb-1"
+        >Contenido</label
+      >
+      <app-toast-editor
+        [initialValue]="form.get('content')?.value || ''"
+        (contentChange)="form.get('content')?.setValue($event)"
+      >
+      </app-toast-editor>
+    </div>
 
-        <!-- BOTÓN DE VISTA PREVIA -->
-        <div class="flex justify-end gap-4 mt-2">
-            <button type="button" (click)="showPreview = true" class="text-sm text-gray-600 hover:underline">
-                Vista previa
-            </button>
-        </div>
+    <!-- BOTÓN DE VISTA PREVIA -->
+    <div class="flex justify-end gap-4 mt-2">
+      <button
+        type="button"
+        (click)="showPreview = true"
+        class="text-sm text-gray-600 hover:underline"
+      >
+        Vista previa
+      </button>
+    </div>
 
-        <!-- VISTA PREVIA -->
-        <div *ngIf="showPreview" class="prose max-w-none bg-gray-50 p-4 rounded-md shadow-md">
-            <markdown [data]="form.get('content')?.value"></markdown>
-            <div class="flex justify-end">
-                <button type="button" class="mt-4 text-sm text-blue-600 hover:underline" (click)="showPreview = false">
-                    Cerrar vista
-                </button>
-            </div>
-        </div>
+    <!-- VISTA PREVIA -->
+    <div
+      *ngIf="showPreview"
+      class="prose max-w-none bg-gray-50 p-4 rounded-md shadow-md"
+    >
+      <markdown [data]="form.get('content')?.value"></markdown>
+      <div class="flex justify-end">
+        <button
+          type="button"
+          class="mt-4 text-sm text-blue-600 hover:underline"
+          (click)="showPreview = false"
+        >
+          Cerrar vista
+        </button>
+      </div>
+    </div>
 
-        <!-- CARGA DE IMAGEN -->
-        <div class="col-span-full">
-            <label class="block text-sm font-medium text-gray-700 mb-1">Cargar imagen</label>
-            <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-5">
-                <div class="text-center">
-                    <svg class="mx-auto size-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <div class="mt-4 flex text-sm text-gray-600">
-                        <label for="file-upload"
-                            class="relative cursor-pointer rounded-md bg-white font-medium text-blue-600 hover:underline">
-                            <span>Cargar imagen</span>
-                            <input id="file-upload" name="file-upload" type="file" class="sr-only" />
-                        </label>
-                        <p class="pl-1">o arrastre aquí</p>
-                    </div>
-                    <p class="text-xs text-gray-600">PNG, JPG, GIF hasta 10MB</p>
-                </div>
-            </div>
+    <!-- CARGA DE IMAGEN -->
+    <div class="col-span-full">
+      <label class="block text-sm font-medium text-gray-700 mb-1"
+        >Cargar imagen</label
+      >
+      <div
+        class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-5"
+      >
+        <div class="text-center">
+          <svg
+            class="mx-auto size-12 text-gray-300"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <div class="mt-4 flex text-sm text-gray-600">
+            <label
+              for="file-upload"
+              class="relative cursor-pointer rounded-md bg-white font-medium text-blue-600 hover:underline"
+            >
+              <span>Cargar imagen</span>
+              <input
+                id="file-upload"
+                name="file-upload"
+                type="file"
+                class="sr-only"
+              />
+            </label>
+            <p class="pl-1">o arrastre aquí</p>
+          </div>
+          <p class="text-xs text-gray-600">PNG, JPG, GIF hasta 10MB</p>
         </div>
+      </div>
+    </div>
 
-        <!-- BOTONES DE ACCIÓN -->
-        <div class="flex justify-end gap-4 mt-4">
-            <button type="button" (click)="goBack()" class="text-sm text-gray-600 hover:underline">
-                Cancelar
-            </button>
-            <button type="submit"
-                class="px-5 py-1 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600">
-                {{ isEditMode ? 'Actualizar' : 'Crear' }}
-            </button>
-        </div>
-    </form>
+    <!-- BOTONES DE ACCIÓN -->
+    <div class="flex justify-end gap-4 mt-4">
+      <button
+        type="button"
+        (click)="goBack()"
+        class="text-sm text-gray-600 hover:underline"
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="px-5 py-1.5 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600"
+      >
+        {{ isEditMode ? "Actualizar" : "Crear" }}
+      </button>
+    </div>
+  </form>
 </div>

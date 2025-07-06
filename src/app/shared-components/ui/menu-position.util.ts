@@ -13,7 +13,7 @@ export interface MenuPosition {
 export function getDropdownPosition(
   event: MouseEvent,
   menuWidth = 160,
-  offsetY = 8
+  offsetY = 8,
 ): MenuPosition {
   const target = event.currentTarget as HTMLElement;
   const rect = target.getBoundingClientRect();

@@ -1,113 +1,240 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="space-y-12">
-        <div>
-            <h2 class="text-2xl font-semibold text-gray-900"> Nuevo Usuario</h2>
-        </div>
-
-        <div class="max-w-auto mx-auto p-6 bg-white border border-gray-100 rounded-lg">
-            <h2 class="text-base/7 font-semibold text-gray-900">Información del usuario</h2>
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
-
-                <div class="sm:col-span-3">
-                    <label for="first-name" class="block text-sm/6 font-medium text-gray-900">Primer nombre</label>
-                    <div class="mt-1">
-                        <input type="text" name="first-name" id="first-name" autocomplete="given-name"
-                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="first-name" class="block text-sm/6 font-medium text-gray-900">Segundo nombre</label>
-                    <div class="mt-1">
-                        <input type="text" name="first-name" id="first-name" autocomplete="given-name"
-                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Primer apellido</label>
-                    <div class="mt-1">
-                        <input type="text" name="last-name" id="last-name" autocomplete="family-name"
-                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Segundo
-                        apellido</label>
-                    <div class="mt-1">
-                        <input type="text" name="last-name" id="last-name" autocomplete="family-name"
-                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="email" class="block text-sm/6 font-medium text-gray-900">Correo electrónico</label>
-                    <div class="mt-1">
-                        <input id="email" name="email" type="email" autocomplete="email"
-                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="country" class="block text-sm/6 font-medium text-gray-900">Dirección</label>
-                    <div class="mt-1 grid grid-cols-1">
-                        <input type="text" name="street-address" id="street-address" autocomplete="street-address"
-                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label class="block text-sm font-medium text-gray-900">País</label>
-                    <div class="mt-1 border py-1.5 px-1.5 border-gray-300 rounded-md">
-                        <select formControlName="paisId" class="form-select w-full">
-                            <option [ngValue]="null">-- Seleccione país --</option>
-                            <option *ngFor="let pais of paises" [value]="pais.countryId">
-                                {{ pais.name }}
-                            </option>
-                        </select>
-
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label class="block text-sm font-medium text-gray-900">Departamento</label>
-                    <div class="mt-1 border py-1.5 px-1.5 border-gray-300 rounded-md">
-                        <select formControlName="departamentoId" class="form-select w-full">
-                            <option [ngValue]="null">-- Seleccione depto. --</option>
-                            <option *ngFor="let dep of departamentos" [value]="dep.id">{{ dep.nombre }}</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label class="block text-sm font-medium text-gray-900">Ciudad</label>
-                    <div class="mt-1 border py-1.5 px-1.5 border-gray-300 rounded-md">
-                        <select formControlName="ciudadId" class="form-select w-full">
-                            <option [ngValue]="null">-- Seleccione ciudad --</option>
-                            <option *ngFor="let ciudad of ciudades" [value]="ciudad.id">{{ ciudad.nombre }}</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="postal-code" class="block text-sm/6 font-medium text-gray-900">ZIP / Codigo Postal
-                        code</label>
-                    <div class="mt-1">
-                        <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code"
-                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6">
-                    </div>
-                </div>
-            </div>
-            <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" (click)="goBack()" class="text-sm text-gray-600 hover:underline">
-                    Cancelar
-                </button>
-                <button type="submit"
-                    class="px-5 py-1.5 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600">
-                    Guardar
-                </button>
-            </div>
-        </div>
+  <div class="space-y-12">
+    <div>
+      <h2 class="text-2xl font-semibold text-gray-900">Nuevo Usuario</h2>
     </div>
+
+    <div
+      class="max-w-auto mx-auto p-6 bg-white border rounded-lg border-gray-100"
+    >
+      <h2 class="text-base/7 font-semibold text-gray-900">
+        Información del usuario
+      </h2>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
+        <!-- Primer Nombre -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900"
+            >Primer nombre</label
+          >
+          <input
+            type="text"
+            formControlName="primerNombre"
+            class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
+          />
+          <div
+            *ngIf="f['primerNombre'].touched && f['primerNombre'].invalid"
+            class="text-red-500 text-sm mt-1"
+          >
+            <small *ngIf="f['primerNombre'].errors?.['required']"
+              >El primer nombre es obligatorio.</small
+            >
+            <small *ngIf="f['primerNombre'].errors?.['minlength']"
+              >Mínimo 2 caracteres.</small
+            >
+          </div>
+        </div>
+
+        <!-- Segundo Nombre -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900"
+            >Segundo nombre</label
+          >
+          <input
+            type="text"
+            formControlName="segundoNombre"
+            class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
+          />
+        </div>
+
+        <!-- Primer Apellido -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900"
+            >Primer apellido</label
+          >
+          <input
+            type="text"
+            formControlName="primerApellido"
+            class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
+          />
+          <div
+            *ngIf="f['primerApellido'].touched && f['primerApellido'].invalid"
+            class="text-red-500 text-sm mt-1"
+          >
+            <small *ngIf="f['primerApellido'].errors?.['required']"
+              >El primer apellido es obligatorio.</small
+            >
+            <small *ngIf="f['primerApellido'].errors?.['minlength']"
+              >Mínimo 2 caracteres.</small
+            >
+          </div>
+        </div>
+
+        <!-- Segundo Apellido -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900"
+            >Segundo apellido</label
+          >
+          <input
+            type="text"
+            formControlName="segundoApellido"
+            class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900"
+            >Correo electrónico</label
+          >
+          <input
+            type="email"
+            formControlName="email"
+            class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
+          />
+          <div
+            *ngIf="f['email'].touched && f['email'].invalid"
+            class="text-red-500 text-sm mt-1"
+          >
+            <small *ngIf="f['email'].errors?.['required']"
+              >El correo es obligatorio.</small
+            >
+            <small *ngIf="f['email'].errors?.['email']"
+              >Formato inválido.</small
+            >
+          </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900"
+            >Dirección</label
+          >
+          <input
+            type="text"
+            formControlName="direccion"
+            class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
+          />
+          <div
+            *ngIf="f['direccion'].touched && f['direccion'].invalid"
+            class="text-red-500 text-sm mt-1"
+          >
+            <small *ngIf="f['direccion'].errors?.['required']"
+              >La dirección es obligatoria.</small
+            >
+            <small *ngIf="f['direccion'].errors?.['minlength']"
+              >Mínimo 5 caracteres.</small
+            >
+          </div>
+        </div>
+        <!-- <pre>{{ paises | json }}</pre> -->
+        <!-- País -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900">País</label>
+          <select
+            formControlName="paisId"
+            (change)="onPaisChange()"
+            class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
+          >
+            <option [ngValue]="null">-- Seleccione país --</option>
+            <option *ngFor="let pais of paises" [ngValue]="pais.id">
+              {{ pais.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="f['paisId'].touched && f['paisId'].invalid"
+            class="text-red-500 text-sm mt-1"
+          >
+            <small>Selecciona un país.</small>
+          </div>
+        </div>
+
+        <!-- Departamento -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900"
+            >Departamento</label
+          >
+          <select
+            formControlName="departamentoId"
+            (change)="onDepartamentoChange()"
+            class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
+          >
+            <option [ngValue]="null">-- Seleccione depto. --</option>
+            <option *ngFor="let dep of departamentos" [value]="dep.id">
+              {{ dep.nombre }}
+            </option>
+          </select>
+          <div
+            *ngIf="f['departamentoId'].touched && f['departamentoId'].invalid"
+            class="text-red-500 text-sm mt-1"
+          >
+            <small>Selecciona un departamento.</small>
+          </div>
+        </div>
+
+        <!-- Ciudad -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900">Ciudad</label>
+          <select
+            formControlName="ciudadId"
+            class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
+          >
+            <option [ngValue]="null">-- Seleccione ciudad --</option>
+            <option *ngFor="let ciudad of ciudades" [value]="ciudad.id">
+              {{ ciudad.nombre }}
+            </option>
+          </select>
+          <div
+            *ngIf="f['ciudadId'].touched && f['ciudadId'].invalid"
+            class="text-red-500 text-sm mt-1"
+          >
+            <small>Selecciona una ciudad.</small>
+          </div>
+        </div>
+
+        <!-- Código Postal -->
+        <div class="sm:col-span-3">
+          <label class="block text-sm font-medium text-gray-900"
+            >ZIP / Código Postal</label
+          >
+          <input
+            type="text"
+            formControlName="codigoPostal"
+            class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
+          />
+          <div
+            *ngIf="f['codigoPostal'].touched && f['codigoPostal'].invalid"
+            class="text-red-500 text-sm mt-1"
+          >
+            <small *ngIf="f['codigoPostal'].errors?.['required']"
+              >El código postal es obligatorio.</small
+            >
+            <small *ngIf="f['codigoPostal'].errors?.['pattern']"
+              >Debe ser de 4 a 10 dígitos.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-end gap-x-6">
+        <button
+          type="button"
+          (click)="goBack()"
+          class="text-sm text-gray-600 hover:underline"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          [disabled]="form.invalid"
+          class="px-5 py-1.5 text-white text-sm font-medium rounded"
+          [ngClass]="{
+            'bg-blue-500 hover:bg-blue-600': form.valid,
+            'bg-gray-400 opacity-50 cursor-not-allowed': form.invalid,
+          }"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
 </form>

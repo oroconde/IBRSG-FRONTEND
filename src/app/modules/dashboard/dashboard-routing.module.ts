@@ -13,7 +13,7 @@ export const routes: Routes = [
         path: 'admin',
         loadComponent: () =>
           import('./presentation/admin/admin-dashboard.component').then(
-            (m) => m.AdminDashboardComponent
+            (m) => m.AdminDashboardComponent,
           ),
         // canActivate: [AdminGuard],
       },
@@ -21,7 +21,7 @@ export const routes: Routes = [
         path: 'user',
         loadComponent: () =>
           import('./presentation/user/user-dashboard.component').then(
-            (m) => m.UserDashboardComponent
+            (m) => m.UserDashboardComponent,
           ),
         // canActivate: [UserGuard],
       },
@@ -37,7 +37,7 @@ export const routes: Routes = [
         path: 'admin/directorio',
         loadChildren: () =>
           import('../../modules/admin-users/admin-users.routes').then(
-            (m) => m.adminUsersRoutes
+            (m) => m.adminUsersRoutes,
           ),
         // canActivate: [AdminGuard],
       },
