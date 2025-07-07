@@ -75,4 +75,64 @@ Con la estructura actual que ya tienes y la configuración que hicimos, tus ruta
 
 Estas rutas cargan dentro del PrivateLayoutComponent, el cual puedes usar para incluir `<app-sidebar>` y `<app-private-header>`.
 
+---
+
+
+## **🐳 Dockerización del Frontend Angular**
+
+Implementación para permitir el despliegue del proyecto frontend mediante **Docker** y **NGINX**, facilitando su ejecución en entornos locales y productivos.
+
+
+- **Dockerfile:** 
+  
+  Se creó un Dockerfile para construir una imagen liviana basada en **NGINX**, encargada de servir el contenido generado por Angular tras la compilación (ng build).
+    
+- **nginx.conf:** 
+  
+  Se agregó una configuración personalizada de NGINX con las siguientes características:    
+
+    - Soporte para aplicaciones **SPA (Single Page Application)**.
+    - Ruta de salud disponible en /front/health para monitoreo.
+    - Redirección de rutas /api hacia el backend en http://host.docker.internal:9111 mediante proxy_pass.
+    - Inclusión de cabeceras **CORS** necesarias para el desarrollo y pruebas locales.
+    - Manejo de errores comunes (400, 405) con páginas personalizadas.
+        
+    
+- **environment.prod.ts:**
+    
+    Se ajustó temporalmente la URL de apiUrl para apuntar a http://localhost:9111/api/v2, facilitando las pruebas de integración local durante el desarrollo.
+    
+
+### **🚀 Instrucciones para construir y ejecutar el contenedor**
+
+Asegúrate de haber compilado previamente el proyecto Angular en modo producción:
+
+1. Compilar la aplicación Angular
+    ```
+    ng build --configuration=production
+    ```
+
+Luego, construye y ejecuta el contenedor Docker:
+
+2. Construir la imagen Docker
+    ```
+    docker build -t ibrsg-frontend .
+    ```
+
+3. Ejecutar el contenedor en el puerto 8080   
+    ```
+    docker run --name ibrsg-frontend -p 8080:80 ibrsg-frontend
+    ```
+
+La aplicación estará disponible en:
+
+```
+http://localhost:8080
+```
+
+### **📌 Notas adicionales**
+
+- host.docker.internal permite que el contenedor acceda al backend corriendo en tu máquina host (solo funciona en Docker Desktop).
+- Este entorno está optimizado para desarrollo local, pero la estructura es compatible con despliegues productivos o en la nube (NGINX + Docker).
+- Se recomienda usar environment.prod.ts con URLs definitivas antes de hacer un despliegue a producción real.
 
