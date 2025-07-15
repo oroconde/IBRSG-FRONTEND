@@ -126,7 +126,7 @@
             >
           </div>
         </div>
-        <!-- <pre>{{ paises | json }}</pre> -->
+
         <!-- País -->
         <div class="sm:col-span-3">
           <label class="block text-sm font-medium text-gray-900">País</label>
@@ -135,8 +135,11 @@
             (change)="onPaisChange()"
             class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
           >
-            <option [ngValue]="null">-- Seleccione país --</option>
-            <option *ngFor="let pais of paises" [ngValue]="pais.id">
+            <option [value]="null">-- Seleccione país --</option>
+            <option
+              *ngFor="let pais of paises; trackBy: trackById"
+              [value]="pais.id"
+            >
               {{ pais.name }}
             </option>
           </select>
@@ -158,9 +161,9 @@
             (change)="onDepartamentoChange()"
             class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
           >
-            <option [ngValue]="null">-- Seleccione depto. --</option>
+            <option [value]="null">-- Seleccione depto. --</option>
             <option *ngFor="let dep of departamentos" [value]="dep.id">
-              {{ dep.nombre }}
+              {{ dep.name }}
             </option>
           </select>
           <div
@@ -178,9 +181,9 @@
             formControlName="ciudadId"
             class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
           >
-            <option [ngValue]="null">-- Seleccione ciudad --</option>
+            <option [value]="null">-- Seleccione ciudad --</option>
             <option *ngFor="let ciudad of ciudades" [value]="ciudad.id">
-              {{ ciudad.nombre }}
+              {{ ciudad.name }}
             </option>
           </select>
           <div

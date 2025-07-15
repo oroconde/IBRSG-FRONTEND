@@ -1,10 +1,10 @@
-// src/app/modules/admin-users/presentation/admin-users-form.component.ts
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  inject,
   OnInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  inject,
 } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -13,9 +13,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-
-import { Country, Department, City } from '../interfaces/user.interface';
 import { CountriesService } from '../../../core/services/country.service';
+import { Country, Department, City } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-admin-users-form',
@@ -25,22 +24,19 @@ import { CountriesService } from '../../../core/services/country.service';
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
 })
 export class AdminUsersFormComponent implements OnInit {
-  private router = inject(Router);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
   private countriesService = inject(CountriesService);
 
   form!: FormGroup;
-  paises: Array<any> = [];
+  paises: Country[] = [];
   departamentos: Department[] = [];
   ciudades: City[] = [];
 
   ngOnInit(): void {
     this.initForm();
     this.loadPaises();
-  }
-
-  get f() {
-    return this.form.controls;
   }
 
   private initForm(): void {
@@ -61,31 +57,37 @@ export class AdminUsersFormComponent implements OnInit {
     });
   }
 
+  get f() {
+    return this.form.controls;
+  }
+
   loadPaises(): void {
     this.countriesService.getAllCountries().subscribe({
-      next: (data) => {
+      next: (data: Country[]) => {
         this.paises = data;
+        this.cdr.markForCheck();
       },
-      error: (err) => {
+      error: (err: any) => {
+        console.error('Error cargando países:', err);
         this.paises = [];
+        this.cdr.markForCheck();
       },
     });
   }
 
   onPaisChange(): void {
-    const country = this.f['paisId'].value;
-    if (!country) return;
+    const countryId = this.f['paisId'].value;
+    if (!countryId) return;
 
-    this.countriesService.getDepartments(country).subscribe({
-      next: (data) =>
-        (this.departamentos = data.map((d: any) => ({
-          id: d.id,
-          nombre: d.nombre,
-          countryId: d.countryId ?? this.f['paisId'].value,
-        }))),
-      error: (err) => {
+    this.countriesService.getDepartments(countryId).subscribe({
+      next: (data: Department[]) => {
+        this.departamentos = data;
+        this.cdr.markForCheck();
+      },
+      error: (err: any) => {
         console.error('Error cargando departamentos:', err);
         this.departamentos = [];
+        this.cdr.markForCheck();
       },
     });
 
@@ -95,21 +97,18 @@ export class AdminUsersFormComponent implements OnInit {
   }
 
   onDepartamentoChange(): void {
-    const country = this.f['paisId'].value;
-    const state = this.f['departamentoId'].value;
-    if (!country || !state) return;
+    const departmentId = this.f['departamentoId'].value;
+    if (!departmentId) return;
 
-    this.countriesService.getCities(country, state).subscribe({
-      next: (data) =>
-        (this.ciudades = data.map((c: any) => ({
-          id: c.id,
-          nombre: c.nombre,
-          departmentsId:
-            c.departmentsId ?? c.departmentId ?? this.f['departamentoId'].value,
-        }))),
-      error: (err) => {
+    this.countriesService.getCities(departmentId).subscribe({
+      next: (data: City[]) => {
+        this.ciudades = data;
+        this.cdr.markForCheck();
+      },
+      error: (err: any) => {
         console.error('Error cargando ciudades:', err);
         this.ciudades = [];
+        this.cdr.markForCheck();
       },
     });
 
@@ -128,5 +127,9 @@ export class AdminUsersFormComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['/dashboard/admin/directorio']);
+  }
+
+  trackById(index: number, item: { id: number }): number {
+    return item.id;
   }
 }
