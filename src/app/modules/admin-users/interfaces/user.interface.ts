@@ -14,19 +14,19 @@ export interface IPersonWithUser {
 }
 
 export interface Country {
-  countryId: number;
+  id: number;
   name: string;
   isoCode: string;
 }
 
 export interface Department {
   id: number;
-  nombre: string;
+  name: string;
   countryId: number;
 }
 
 export interface City {
   id: number;
-  nombre: string;
-  departmentsId: number;
+  name: string;
+  departmentId: number;
 }

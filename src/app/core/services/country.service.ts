@@ -1,59 +1,55 @@
-// src/app/modules/core/services/country.service.ts
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
+import { environment } from '../../../enviroments/environment';
+import {
+  Country,
+  Department,
+  City,
+} from '../../modules/admin-users/interfaces/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class CountriesService {
+  private apiUrl = `${environment.apiUrl}/catalogs`;
   constructor(private http: HttpClient) {}
 
-  getAllCountries(): Observable<Array<{ id: string; name: string }>> {
+  getAllCountries(): Observable<Country[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/countries`).pipe(
+      map((res) =>
+        res.map((c) => ({
+          id: c.countryId,
+          name: c.name,
+          isoCode: c.isoCode,
+        }))
+      )
+    );
+  }
+
+  getDepartments(countryId: number): Observable<Department[]> {
     return this.http
-      .get<any>('https://countriesnow.space/api/v0.1/countries/positions')
+      .get<any[]>(`${this.apiUrl}/countries/${countryId}/departments`)
       .pipe(
-        map((resp) => {
-          if (!resp || !resp.data) return [];
-          return resp.data.map((item: any) => ({
-            id: item.name,
-            name: item.name,
-          }));
-        }),
+        map((res) =>
+          res.map((d) => ({
+            id: d.departmentId,
+            name: d.name,
+            countryId: d.countryId,
+          }))
+        )
       );
   }
 
-  getDepartments(country: string): Observable<any[]> {
+  getCities(departmentId: number): Observable<City[]> {
     return this.http
-      .post<any>('https://countriesnow.space/api/v0.1/countries/states', {
-        country,
-      })
+      .get<any[]>(`${this.apiUrl}/departments/${departmentId}/municipalities`)
       .pipe(
-        map((resp) => {
-          if (!resp || !resp.data || !resp.data.states) return [];
-          return resp.data.states.map((s: any) => ({
-            id: s.name,
-            nombre: s.name,
-            countryId: country,
-          }));
-        }),
-      );
-  }
-
-  getCities(country: string, state: string): Observable<any[]> {
-    return this.http
-      .post<any>('https://countriesnow.space/api/v0.1/countries/state/cities', {
-        country,
-        state,
-      })
-      .pipe(
-        map((resp) => {
-          if (!resp || !resp.data) return [];
-          return resp.data.map((c: string) => ({
-            id: c,
-            nombre: c,
-            departmentsId: state,
-          }));
-        }),
+        map((res) =>
+          res.map((m) => ({
+            id: m.municipalityId,
+            name: m.name,
+            departmentId: m.departmentId,
+          }))
+        )
       );
   }
 }
