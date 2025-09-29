@@ -12,8 +12,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from '../../../shared-components/ui/pagination/pagination.component';
-// import { IPersonWithUser } from '../interfaces/article.interface';
 import { UsersService } from '../users.service';
+import { AuthService } from '../../auth/application/auth.service';
 
 @Component({
   selector: 'app-admin-users',
@@ -24,6 +24,7 @@ import { UsersService } from '../users.service';
 })
 export class AdminUsersComponent {
   private readonly usersService = inject(UsersService);
+  private readonly authService = inject(AuthService);
 
   readonly page = signal(1);
   readonly totalPages = signal(1);
@@ -35,7 +36,13 @@ export class AdminUsersComponent {
   dropdownPosition = signal<Record<string, string>>({});
 
   constructor() {
-    this.fetchUsers(); // carga inicial
+    // Espera a que AuthService.user() tenga valor antes de llamar fetchUsers()
+    effect(() => {
+      const user = this.authService.user();
+      if (user) {
+        this.fetchUsers();
+      }
+    });
   }
 
   users = computed(() => this.usersList());
@@ -57,7 +64,7 @@ export class AdminUsersComponent {
     const params: Record<string, any> = {
       page: this.page(),
       limit: this.limit,
-      order: 'firstName,ASC',
+      order: 'createdAt,DESC',
       relations: 'user',
       select: 'user.roles',
     };
@@ -120,7 +127,7 @@ export class AdminUsersComponent {
   handleClickOutside(event: MouseEvent): void {
     if (!this.menuRef?.nativeElement) return;
     const clickedInside = this.menuRef.nativeElement.contains(
-      event.target as Node,
+      event.target as Node
     );
     if (!clickedInside) this.closeMenu();
   }

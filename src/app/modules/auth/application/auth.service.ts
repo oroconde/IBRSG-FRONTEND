@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.post(
       `${this.API_URL}/auth/login`,
       { email, password },
-      { withCredentials: true }, // ✅ para que Angular maneje cookies
+      { withCredentials: true } // para que Angular maneje cookies
     );
   }
 
@@ -33,13 +33,18 @@ export class AuthService {
     console.log('[AuthService] checkAuthStatus called');
     return this.http
       .get<{
-        data: { token: string; user: UserProfile };
+        data: { access_token?: string; user: UserProfile };
       }>(`${this.API_URL}/auth/check-status`, { withCredentials: true })
       .pipe(
         tap((res) => {
-          console.log('[AuthService] checkAuthStatus response:', res);
+          // 🔑 Guardar el access_token correcto
+          if (res.data.access_token) {
+            sessionStorage.setItem('access_token', res.data.access_token);
+          } else {
+            sessionStorage.removeItem('access_token');
+          }
           this.user.set(res.data.user);
-        }),
+        })
       );
   }
 
@@ -52,6 +57,7 @@ export class AuthService {
       .post(`${this.API_URL}/auth/logout`, {}, { withCredentials: true })
       .subscribe(() => {
         this.user.set(null);
+        sessionStorage.removeItem('access_token'); // Limpiar token al cerrar sesión
         this.router.navigate(['/login']);
       });
   }
