@@ -2,14 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseApiService } from '../../core/services/base-api.service';
 import { environment } from '../../../enviroments/environment';
-import {
-  City,
-  Country,
-  Department,
-  IPersonWithUser,
-} from './interfaces/user.interface';
-import { map, Observable } from 'rxjs';
+import { IPersonWithUser } from './interfaces/user.interface';
+import { Observable } from 'rxjs';
 import { IPaginatedResponse } from '../../core/interfaces/paginated.response.interface';
+import { ICreateUserDto } from './interfaces/create-user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService extends BaseApiService<IPersonWithUser> {
@@ -19,24 +15,28 @@ export class UsersService extends BaseApiService<IPersonWithUser> {
     super(http);
   }
 
+  /**
+   * Obtener todos los usuarios con soporte para paginación y filtros
+   */
   getAllUsers(
-    params?: Record<string, any> // : Observable<IPaginatedResponse<IPersonWithUser>>
-  ) {
+    params?: Record<string, any>
+  ): Observable<IPaginatedResponse<IPersonWithUser>> {
     return this.findAll({ params });
   }
 
-  getCountries(): Observable<Country[]> {
-    return this.http
-      .get<{ data: { docs: Country[] } }>('/api/v2/catalogs/countries')
-      .pipe(map((response) => response.data.docs));
-  }
+  // createUser(payload: Partial<IPersonWithUser>): Observable<IPersonWithUser> {
+  //   return this.create(payload);
+  // }
 
-  createUser(payload: Partial<IPersonWithUser>): Observable<IPersonWithUser> {
-    return this.create(payload);
+  createUser(payload: Partial<ICreateUserDto>): Observable<ICreateUserDto> {
+    return this.http.post<ICreateUserDto>(
+      `${environment.apiUrl}/user`,
+      payload
+    );
   }
 
   /**
-   * ✅ Actualizar usuario
+   * Actualizar usuario
    */
   updateUser(
     id: number | string,
@@ -46,7 +46,7 @@ export class UsersService extends BaseApiService<IPersonWithUser> {
   }
 
   /**
-   * 📌 Obtener usuario por email
+   * Obtener usuario por email
    */
   findByEmail(email: string): Observable<{ data: IPersonWithUser }> {
     return this.http.get<{ data: IPersonWithUser }>(
@@ -55,7 +55,7 @@ export class UsersService extends BaseApiService<IPersonWithUser> {
   }
 
   /**
-   * 📌 Cambiar estado de usuario (activar/desactivar)
+   * Cambiar estado de usuario (activar/desactivar)
    */
   toggleUserStatus(userId: number, isActive: boolean): Observable<void> {
     return this.http.patch<void>(`${this.baseUrl}/${userId}/status`, {
@@ -64,14 +64,14 @@ export class UsersService extends BaseApiService<IPersonWithUser> {
   }
 
   /**
-   * 📌 Asignar roles al usuario
+   * Asignar roles al usuario
    */
   assignRoles(userId: number, roles: string[]): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/${userId}/roles`, { roles });
   }
 
   /**
-   * 📌 Eliminar usuario
+   * Eliminar usuario
    */
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);

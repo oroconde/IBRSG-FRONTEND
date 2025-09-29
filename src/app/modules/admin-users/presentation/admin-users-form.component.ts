@@ -14,7 +14,15 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CountriesService } from '../../../core/services/country.service';
-import { Country, Department, City } from '../interfaces/user.interface';
+import {
+  Country,
+  Department,
+  City,
+} from '../../../core/interfaces/address-interface';
+import { UsersService } from '../users.service';
+import { finalize } from 'rxjs';
+import { ICreateUserDto } from '../interfaces/create-user.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-users-form',
@@ -28,11 +36,13 @@ export class AdminUsersFormComponent implements OnInit {
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
   private countriesService = inject(CountriesService);
+  private usersService = inject(UsersService);
 
   form!: FormGroup;
   paises: Country[] = [];
   departamentos: Department[] = [];
   ciudades: City[] = [];
+  loading = false; // deshabilitar el botón mientras guarda
 
   ngOnInit(): void {
     this.initForm();
@@ -121,8 +131,68 @@ export class AdminUsersFormComponent implements OnInit {
       return;
     }
 
-    console.log('Datos enviados:', this.form.value);
-    this.router.navigate(['/dashboard/admin/directorio']);
+    const payload: ICreateUserDto = {
+      firstName: this.f['primerNombre'].value,
+      middleName: this.f['segundoNombre'].value,
+      lastName: this.f['primerApellido'].value,
+      secondLastName: this.f['segundoApellido'].value,
+      email: this.f['email'].value?.trim(),
+      address: this.f['direccion'].value?.trim(),
+      postalCode: this.f['codigoPostal'].value,
+      countryId: this.f['paisId'].value,
+      departmentId: this.f['departamentoId'].value,
+      municipalityId: this.f['ciudadId'].value,
+    };
+
+    // 1. Muestra confirmación antes de crear
+    Swal.fire({
+      title: '¿Crear usuario?',
+      text: '¿Estás seguro de registrar este nuevo usuario?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, crear',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#3b82f6',
+      cancelButtonColor: '#6b7280',
+    }).then((result) => {
+      if (!result.isConfirmed) return; // Si cancela, no hace nada
+
+      // 2. Llamar al servicio
+      this.loading = true;
+      this.cdr.markForCheck();
+
+      this.usersService
+        .createUser(payload)
+        .pipe(
+          finalize(() => {
+            this.loading = false;
+            this.cdr.markForCheck();
+          })
+        )
+        .subscribe({
+          next: () => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Usuario creado',
+              text: 'El usuario fue registrado exitosamente.',
+              confirmButtonText: 'OK',
+              confirmButtonColor: '#3b82f6',
+            }).then(() => {
+              this.router.navigate(['/dashboard/admin/directorio']);
+            });
+          },
+          error: (err) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text:
+                err?.error?.message?.join('\n') ||
+                'No se pudo crear el usuario.',
+              confirmButtonColor: '#ef4444',
+            });
+          },
+        });
+    });
   }
 
   goBack(): void {

@@ -228,14 +228,14 @@
         </button>
         <button
           type="submit"
-          [disabled]="form.invalid"
+          [disabled]="form.invalid || loading"
           class="px-5 py-1.5 text-white text-sm font-medium rounded"
           [ngClass]="{
-            'bg-blue-500 hover:bg-blue-600': form.valid,
-            'bg-gray-400 opacity-50 cursor-not-allowed': form.invalid,
+            'bg-blue-500 hover:bg-blue-600': form.valid && !loading,
+            'bg-gray-400 opacity-50 cursor-not-allowed': form.invalid || loading
           }"
         >
-          Guardar
+          {{ loading ? "Guardando..." : "Guardar" }}
         </button>
       </div>
     </div>

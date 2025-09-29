@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../enviroments/environment';
-import {
-  Country,
-  Department,
-  City,
-} from '../../modules/admin-users/interfaces/user.interface';
+import { Country, Department, City } from '../interfaces/address-interface';
 
 @Injectable({ providedIn: 'root' })
 export class CountriesService {
@@ -17,7 +13,7 @@ export class CountriesService {
     return this.http.get<any[]>(`${this.apiUrl}/countries`).pipe(
       map((res) =>
         res.map((c) => ({
-          id: c.countryId,
+          id: c.id,
           name: c.name,
           isoCode: c.isoCode,
         }))
@@ -25,13 +21,13 @@ export class CountriesService {
     );
   }
 
-  getDepartments(countryId: number): Observable<Department[]> {
+  getDepartments(id: number): Observable<Department[]> {
     return this.http
-      .get<any[]>(`${this.apiUrl}/countries/${countryId}/departments`)
+      .get<any[]>(`${this.apiUrl}/countries/${id}/departments`)
       .pipe(
         map((res) =>
           res.map((d) => ({
-            id: d.departmentId,
+            id: d.id,
             name: d.name,
             countryId: d.countryId,
           }))
@@ -39,13 +35,13 @@ export class CountriesService {
       );
   }
 
-  getCities(departmentId: number): Observable<City[]> {
+  getCities(id: number): Observable<City[]> {
     return this.http
-      .get<any[]>(`${this.apiUrl}/departments/${departmentId}/municipalities`)
+      .get<any[]>(`${this.apiUrl}/departments/${id}/municipalities`)
       .pipe(
         map((res) =>
           res.map((m) => ({
-            id: m.municipalityId,
+            id: m.id,
             name: m.name,
             departmentId: m.departmentId,
           }))
