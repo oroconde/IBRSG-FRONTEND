@@ -137,23 +137,25 @@
       </div>
       <div class="flex gap-x-4 sm:col-span-2">
         <div class="flex h-6 items-center">
-          <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-          <button
-            type="button"
-            class="flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-gray-900/5 transition-colors duration-200 ease-in-out ring-inset focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            role="switch"
-            aria-checked="false"
-            aria-labelledby="switch-1-label"
+          <input
+            id="accept-policies"
+            name="accept-policies"
+            type="checkbox"
+            class="sr-only peer"
+            required
+          />
+          <label
+            for="accept-policies"
+            class="flex w-8 flex-none cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-gray-900/5 transition-colors duration-200 ease-in-out ring-inset peer-checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             <span class="sr-only">Agree to policies</span>
-            <!-- Enabled: "translate-x-3.5", Not Enabled: "translate-x-0" -->
             <span
               aria-hidden="true"
               class="size-4 translate-x-0 transform rounded-full bg-white ring-1 shadow-xs ring-gray-900/5 transition duration-200 ease-in-out"
             ></span>
-          </button>
+          </label>
         </div>
-        <label class="text-sm/6 text-gray-600" id="switch-1-label">
+        <label for="accept-policies" class="text-sm/6 text-gray-600">
           Acepto los
           <a href="#" class="font-semibold text-indigo-600"
             >Términos y condiciones&nbsp;</a

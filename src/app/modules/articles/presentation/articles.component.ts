@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
 import { ArticlesService } from '../articles.service';
 import { PaginationComponent } from '../../../shared-components/ui/pagination/pagination.component';
 import { Article } from '../interfaces/article.interface';
-import { MarkdownPipe } from '../../../core/pipes/markdown.pipe';
 
 @Component({
   selector: 'app-articles',

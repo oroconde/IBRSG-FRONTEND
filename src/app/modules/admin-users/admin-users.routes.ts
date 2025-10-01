@@ -10,7 +10,7 @@ export const adminUsersRoutes: Routes = [
     path: 'nuevo',
     loadComponent: () =>
       import('./presentation/admin-users-form.component').then(
-        (m) => m.AdminUsersFormComponent
+        (m) => m.AdminUsersFormComponent,
       ),
   },
   // TODO: habilitar edición de usuarios cuando se implemente la funcionalidad en el componente [AdminUsersFormComponent]

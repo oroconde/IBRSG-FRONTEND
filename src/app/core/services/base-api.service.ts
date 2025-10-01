@@ -80,7 +80,7 @@ export abstract class BaseApiService<T extends BaseEntity> {
         ...this.buildOptions(options),
       })
       .pipe(
-        map((event: HttpEvent<any>) => {
+        map((event: HttpEvent<unknown>) => {
           switch (event.type) {
             case HttpEventType.UploadProgress:
               return Math.round((event.loaded / (event.total ?? 1)) * 100);

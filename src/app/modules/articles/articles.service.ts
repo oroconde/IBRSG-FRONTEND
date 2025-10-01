@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../enviroments/environment';
+import { inject } from '@angular/core';
 import { Article } from './interfaces/article.interface';
 import { BaseApiService } from '../../core/services/base-api.service';
+import { environment } from '@env/environment';
+import { HttpParamsType } from 'src/app/core/types/http-params.type';
 
 @Injectable({ providedIn: 'root' })
 export class ArticlesService extends BaseApiService<Article> {
   protected override baseUrl = `${environment.apiUrl}/articles`;
 
-  constructor(protected override http: HttpClient) {
-    super(http);
+  protected override http = inject(HttpClient);
+  constructor() {
+    super(inject(HttpClient));
   }
 
   createArticle(payload: { title: string; content: string }) {
@@ -23,7 +26,7 @@ export class ArticlesService extends BaseApiService<Article> {
     return this.http.get<{ data: Article }>(`${this.baseUrl}/${slug}`);
   }
 
-  getAll(params?: Record<string, any>) {
+  getAll(params?: HttpParamsType) {
     return this.findAll({ params });
   }
 

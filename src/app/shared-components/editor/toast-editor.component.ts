@@ -16,7 +16,7 @@ import Editor from '@toast-ui/editor';
   template: `<div #editorRoot class="toast-editor-resizable-container"></div>`,
 })
 export class ToastEditorComponent implements OnDestroy, AfterViewInit {
-  @Input() initialValue: string = '';
+  @Input() initialValue = '';
   @Output() contentChange = new EventEmitter<string>();
   @ViewChild('editorRoot', { static: true }) editorRoot!: ElementRef;
 

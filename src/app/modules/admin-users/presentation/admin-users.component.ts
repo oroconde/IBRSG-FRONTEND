@@ -13,7 +13,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from '../../../shared-components/ui/pagination/pagination.component';
 import { UsersService } from '../users.service';
+import { IPersonWithUser } from '../interfaces/user.interface';
 import { AuthService } from '../../auth/application/auth.service';
+import { HttpParamsType } from 'src/app/core/types/http-params.type';
 
 @Component({
   selector: 'app-admin-users',
@@ -28,7 +30,7 @@ export class AdminUsersComponent {
 
   readonly page = signal(1);
   readonly totalPages = signal(1);
-  readonly usersList = signal<any[]>([]);
+  readonly usersList = signal<IPersonWithUser[]>([]);
   readonly limit = 10;
   readonly searchControl = signal('');
 
@@ -61,7 +63,7 @@ export class AdminUsersComponent {
 
   public fetchUsers(): void {
     const fullNameValue = this.searchControl().trim();
-    const params: Record<string, any> = {
+    const params: HttpParamsType = {
       page: this.page(),
       limit: this.limit,
       order: 'createdAt,DESC',
@@ -127,7 +129,7 @@ export class AdminUsersComponent {
   handleClickOutside(event: MouseEvent): void {
     if (!this.menuRef?.nativeElement) return;
     const clickedInside = this.menuRef.nativeElement.contains(
-      event.target as Node
+      event.target as Node,
     );
     if (!clickedInside) this.closeMenu();
   }
