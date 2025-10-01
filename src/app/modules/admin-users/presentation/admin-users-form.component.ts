@@ -77,7 +77,7 @@ export class AdminUsersFormComponent implements OnInit {
         this.paises = data;
         this.cdr.markForCheck();
       },
-      error: (err: any) => {
+      error: (err: unknown) => {
         console.error('Error cargando países:', err);
         this.paises = [];
         this.cdr.markForCheck();
@@ -94,7 +94,7 @@ export class AdminUsersFormComponent implements OnInit {
         this.departamentos = data;
         this.cdr.markForCheck();
       },
-      error: (err: any) => {
+      error: (err: unknown) => {
         console.error('Error cargando departamentos:', err);
         this.departamentos = [];
         this.cdr.markForCheck();
@@ -115,7 +115,7 @@ export class AdminUsersFormComponent implements OnInit {
         this.ciudades = data;
         this.cdr.markForCheck();
       },
-      error: (err: any) => {
+      error: (err: unknown) => {
         console.error('Error cargando ciudades:', err);
         this.ciudades = [];
         this.cdr.markForCheck();
@@ -167,7 +167,7 @@ export class AdminUsersFormComponent implements OnInit {
           finalize(() => {
             this.loading = false;
             this.cdr.markForCheck();
-          })
+          }),
         )
         .subscribe({
           next: () => {

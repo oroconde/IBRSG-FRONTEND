@@ -87,7 +87,7 @@
                 <button
                   (click)="toggleMenu(article.id, $event)"
                   type="button"
-                  class="p-2 inline-flex rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100 flex items-center gap-3 focus:bg-gray-100 focus:outline-none"
+                  class="p-2 inline-flex rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100 items-center gap-3 focus:bg-gray-100 focus:outline-none"
                   aria-haspopup="true"
                 >
                   <svg
@@ -123,6 +123,8 @@
         <!-- Opción: Ver -->
         <a
           (click)="verArticulo(openMenuId()!)"
+          (keyup.enter)="verArticulo(openMenuId()!)"
+          tabindex="0"
           role="menuitem"
           class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
         >
@@ -146,6 +148,8 @@
         <a
           [routerLink]="openMenuId() + '/editar'"
           (click)="closeMenu()"
+          (keyup.enter)="closeMenu()"
+          tabindex="0"
           role="menuitem"
           class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
         >
@@ -171,7 +175,9 @@
         <!-- Opción: Eliminar -->
         <button
           (click)="deleteArticle(openMenuId()!); closeMenu()"
+          (keyup.enter)="deleteArticle(openMenuId()!); closeMenu()"
           type="button"
+          tabindex="0"
           role="menuitem"
           class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 transition-colors"
         >

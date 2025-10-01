@@ -75,12 +75,13 @@ export class AdminArticlesComponent {
     const menuWidth = 160; // Ajusta si tu menú es más ancho
 
     // Cálculo para evitar que el menú se desborde fuera del viewport derecho
-    rect.left + menuWidth > window.innerWidth
-      ? rect.right - menuWidth
-      : rect.left;
+    const left =
+      rect.left + menuWidth > window.innerWidth
+        ? rect.right - menuWidth
+        : rect.left;
     this.dropdownPosition.set({
       top: `${rect.bottom + window.scrollY}px`,
-      left: `${rect.right - 140}px`, // Ajusta según el ancho del menú
+      left: `${left}px`, // Ajusta según el ancho del menú
     });
     // Alternar visibilidad del menú contextual
     this.openMenuId.set(this.openMenuId() === itemId ? null : itemId);

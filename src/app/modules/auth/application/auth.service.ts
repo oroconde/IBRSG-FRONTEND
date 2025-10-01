@@ -1,9 +1,9 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../../../enviroments/environment';
 import { UserProfile } from '../interfaces/user-profile.interface';
 import { tap } from 'rxjs';
+import { environment } from '@env/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.post(
       `${this.API_URL}/auth/login`,
       { email, password },
-      { withCredentials: true } // para que Angular maneje cookies
+      { withCredentials: true }, // para que Angular maneje cookies
     );
   }
 
@@ -44,7 +44,7 @@ export class AuthService {
             sessionStorage.removeItem('access_token');
           }
           this.user.set(res.data.user);
-        })
+        }),
       );
   }
 

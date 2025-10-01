@@ -13,10 +13,13 @@
       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
         <!-- Primer Nombre -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900"
+          <label
+            for="primerNombre"
+            class="block text-sm font-medium text-gray-900"
             >Primer nombre</label
           >
           <input
+            id="primerNombre"
             type="text"
             formControlName="primerNombre"
             class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
@@ -36,10 +39,13 @@
 
         <!-- Segundo Nombre -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900"
+          <label
+            for="segundoNombre"
+            class="block text-sm font-medium text-gray-900"
             >Segundo nombre</label
           >
           <input
+            id="segundoNombre"
             type="text"
             formControlName="segundoNombre"
             class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
@@ -48,10 +54,13 @@
 
         <!-- Primer Apellido -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900"
+          <label
+            for="primerApellido"
+            class="block text-sm font-medium text-gray-900"
             >Primer apellido</label
           >
           <input
+            id="primerApellido"
             type="text"
             formControlName="primerApellido"
             class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
@@ -71,10 +80,13 @@
 
         <!-- Segundo Apellido -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900"
+          <label
+            for="segundoApellido"
+            class="block text-sm font-medium text-gray-900"
             >Segundo apellido</label
           >
           <input
+            id="segundoApellido"
             type="text"
             formControlName="segundoApellido"
             class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
@@ -83,10 +95,11 @@
 
         <!-- Email -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900"
+          <label for="email" class="block text-sm font-medium text-gray-900"
             >Correo electrónico</label
           >
           <input
+            id="email"
             type="email"
             formControlName="email"
             class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
@@ -106,10 +119,11 @@
 
         <!-- Dirección -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900"
+          <label for="direccion" class="block text-sm font-medium text-gray-900"
             >Dirección</label
           >
           <input
+            id="direccion"
             type="text"
             formControlName="direccion"
             class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
@@ -129,8 +143,11 @@
 
         <!-- País -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900">País</label>
+          <label for="paisId" class="block text-sm font-medium text-gray-900"
+            >País</label
+          >
           <select
+            id="paisId"
             formControlName="paisId"
             (change)="onPaisChange()"
             class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
@@ -153,10 +170,13 @@
 
         <!-- Departamento -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900"
+          <label
+            for="departamentoId"
+            class="block text-sm font-medium text-gray-900"
             >Departamento</label
           >
           <select
+            id="departamentoId"
             formControlName="departamentoId"
             (change)="onDepartamentoChange()"
             class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
@@ -176,8 +196,11 @@
 
         <!-- Ciudad -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900">Ciudad</label>
+          <label for="ciudadId" class="block text-sm font-medium text-gray-900"
+            >Ciudad</label
+          >
           <select
+            id="ciudadId"
             formControlName="ciudadId"
             class="mt-1 block w-full border rounded-md px-1.5 py-1.5 border-gray-300"
           >
@@ -196,10 +219,13 @@
 
         <!-- Código Postal -->
         <div class="sm:col-span-3">
-          <label class="block text-sm font-medium text-gray-900"
+          <label
+            for="codigoPostal"
+            class="block text-sm font-medium text-gray-900"
             >ZIP / Código Postal</label
           >
           <input
+            id="codigoPostal"
             type="text"
             formControlName="codigoPostal"
             class="mt-1 block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 placeholder-gray-400 outline-1 outline-gray-300 focus:outline-2 focus:outline-blue-500 sm:text-sm"
@@ -232,7 +258,8 @@
           class="px-5 py-1.5 text-white text-sm font-medium rounded"
           [ngClass]="{
             'bg-blue-500 hover:bg-blue-600': form.valid && !loading,
-            'bg-gray-400 opacity-50 cursor-not-allowed': form.invalid || loading
+            'bg-gray-400 opacity-50 cursor-not-allowed':
+              form.invalid || loading,
           }"
         >
           {{ loading ? "Guardando..." : "Guardar" }}

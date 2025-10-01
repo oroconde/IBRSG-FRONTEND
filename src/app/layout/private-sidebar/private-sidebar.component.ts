@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgIf, AsyncPipe, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../../modules/auth/application/auth.service';
 
 @Component({
